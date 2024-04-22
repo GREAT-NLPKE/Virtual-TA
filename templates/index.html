@@ -1,0 +1,248 @@
+<head>
+    <link type="text/css" href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='notiflix/notiflix-3.2.5.min.css') }}" />
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+    <script src="{{ url_for('static', filename='jquery/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='notiflix/notiflix-3.2.5.min.js') }}"></script>
+    <!-- <script src="http://www.5imoban.net/download/jquery/jquery.cookie.min.js"></script> -->
+    <script src="{{ url_for('static', filename='jquery/jquery.cookie.min.js') }}"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon1.ico') }}">
+    <!-- bootstrap -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='jquery/bootstrap.min.css') }}">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script> -->
+    <script src="{{ url_for('static', filename='jquery/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='jquery/bootstrap.min.js') }}"></script>
+    ​<meta name="viewport" content="width=device-width, initial-scale=1" />
+  </body>
+
+</head>
+
+<body onload="caption();">
+    <div>
+        <div class="logo_left">
+            <a href="https://www.shu.edu.cn" target="_blank">
+                <img src="{{url_for('static',filename='image/SHU.jpeg')}}" alt="上海大学官网" style="width: 200px;height: 100px;">
+            </a>
+        </div>
+
+        <h1 class="title-css" onclick="caption();">Virtual TA</h1>
+        
+        <script>
+            var conv_history = JSON.stringify([]);
+            var course_list = {'ALL':'all','数字图像处理':'shutu','计算机网络':'jiwang','信号与系统':'xinhao','软件考试助手':'ruankao'};
+            // function caption(){
+            //     Notiflix.Report.info(
+            //         '说 明',
+            //         '项目负责人：陆珉俊；对话维护：侯吟丞；',
+            //         '确定'
+            //     );
+            // }
+        </script>
+
+        <div class="logo_right">
+            <img src="{{url_for('static',filename='image/institute_logo.jpg')}}" style="width: 180px;height: 100px;">
+            <img src="{{url_for('static',filename='image/great_logo.jpg')}}" style="width: 180px;height: 100px;">
+        </div>
+    </div>
+
+    <script>
+        function choose_model(e){
+            var modelname = e.innerHTML;
+            Notiflix.Notify.info('已切换至:'+modelname);
+
+            var div = document.getElementById('model_name');
+            div.innerHTML = modelname;
+
+            this.reset();
+            var block = document.createElement("blockquote");
+            block.setAttribute('class','dialog');
+            block.setAttribute('onclick','NLU(this);');
+            block.innerHTML='<svg height="30" viewBox="0 0 48 48" width="30" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#f1f2f2;}.cls-2{fill:#35dc86;}.cls-3{fill:none;stroke:#474c54;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g data-name="14-Android" id="_14-Android"><g data-name="&lt;Group&gt;" id="_Group_"><circle class="cls-1" cx="28" cy="9" r="2"/><circle class="cls-1" cx="20" cy="9" r="2"/><path class="cls-2" d="M38,34v3a2.006,2.006,0,0,1-2,2H33v6a2.006,2.006,0,0,1-2,2H29a2.006,2.006,0,0,1-2-2V39H21v6a2.006,2.006,0,0,1-2,2H17a2.006,2.006,0,0,1-2-2V39H12a2.006,2.006,0,0,1-2-2V34H7a.979.979,0,0,1-1-1V23a1.959,1.959,0,0,1,2-2H40a1.959,1.959,0,0,1,2,2V33a.979.979,0,0,1-1,1Z"/><path class="cls-2" d="M38,15v2H10V15a14,14,0,0,1,28,0ZM30,9a2,2,0,1,0-2,2A2.006,2.006,0,0,0,30,9ZM22,9a2,2,0,1,0-2,2A2.006,2.006,0,0,0,22,9Z"/><path class="cls-3" d="M38,15a14,14,0,0,0-28,0v2H38Z"/><line class="cls-3" x1="14" x2="10" y1="5" y2="1"/><line class="cls-3" x1="34" x2="38" y1="5" y2="1"/><path class="cls-3" d="M19,39h8v6a2.006,2.006,0,0,0,2,2h2a2.006,2.006,0,0,0,2-2V39h3a2.006,2.006,0,0,0,2-2V28"/><path class="cls-3" d="M10,28v9a2.006,2.006,0,0,0,2,2h3v6a2.006,2.006,0,0,0,2,2h2a2.006,2.006,0,0,0,2-2V43"/><path class="cls-3" d="M10,34H7a.979.979,0,0,1-1-1V23a1.959,1.959,0,0,1,2-2H40a1.959,1.959,0,0,1,2,2V33a.979.979,0,0,1-1,1H38"/><circle class="cls-3" cx="20" cy="9" r="2"/><circle class="cls-3" cx="28" cy="9" r="2"/></g></g></svg><pre style="white-space: pre-wrap; word-wrap: break-word;">系统提示：已切换课程。</pre>';
+            var div = document.getElementById('context');
+            div.appendChild(block);
+        }
+    </script>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3f81c1; margin-left: 5%; margin-right:5%; margin-bottom: 10px; border-radius:3px; font-size: larger;">
+        <a class="navbar-brand" href="#" style="margin-right: 40%;">当前选择的课程：<text id="model_name">软件考试助手</text></a>
+            <!-- <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                TASK
+                </button>
+                <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Chat</a>
+                <a class="dropdown-item" href="#">Generation</a>
+                <a class="dropdown-item" href="#">Summarization</a>
+                </div>
+          </div> -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav" >
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="choose_model(this)">软件考试助手</a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="choose_model(this)">数字图像处理</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="choose_model(this)">计算机网络</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="choose_model(this)">信号与系统</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="choose_model(this)">ALL</a>
+            </li>
+            <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">MPT</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#" onclick="choose_model(this)">MPT-Instruct</a>
+                  <a class="dropdown-item" href="#" onclick="choose_model(this)">MPT-StoryWriter</a>
+                  <a class="dropdown-item" href="#" onclick="choose_model(this)">MPT-Chat</a>
+              </li> -->
+          </ul>
+        </div>
+    </nav>
+
+    <div class="context" id="context" style="height:60%">
+        <!-- <blockquote class="dialog">
+            <svg t="1654598627424" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1379" width="30" height="30"><path d="M661.333333 490.666667c-36.266667 0-64 27.733333-64 64s27.733333 64 64 64 64-27.733333 64-64-27.733333-64-64-64M362.666667 490.666667c-36.266667 0-64 27.733333-64 64s27.733333 64 64 64 64-27.733333 64-64-27.733333-64-64-64" fill="#2F3CF4" p-id="1380"></path><path d="M128 320c0-23.466667 19.2-42.666667 42.666667-42.666667h170.666666l-61.866666-155.733333c-8.533333-21.333333 2.133333-46.933333 23.466666-55.466667 21.333333-8.533333 46.933333 2.133333 55.466667 23.466667l74.666667 185.6h155.733333l74.666667-185.6c8.533333-21.333333 34.133333-32 55.466666-23.466667 21.333333 8.533333 32 34.133333 23.466667 55.466667L682.666667 277.333333h170.666666c23.466667 0 42.666667 19.2 42.666667 42.666667v597.333333c0 23.466667-19.2 42.666667-42.666667 42.666667H170.666667c-23.466667 0-42.666667-19.2-42.666667-42.666667V320z m85.333333 42.666667v512h597.333334V362.666667H213.333333zM1024 725.333333V512c0-23.466667-19.2-42.666667-42.666667-42.666667s-42.666667 19.2-42.666666 42.666667v213.333333c0 23.466667 19.2 42.666667 42.666666 42.666667s42.666667-19.2 42.666667-42.666667M42.666667 768c23.466667 0 42.666667-19.2 42.666666-42.666667V512c0-23.466667-19.2-42.666667-42.666666-42.666667s-42.666667 19.2-42.666667 42.666667v213.333333c0 23.466667 19.2 42.666667 42.666667 42.666667" fill="#2F3CF4" p-id="1381"></path></svg>
+            <a>请问有什么能帮助您的嘛？</a>
+        </blockquote> -->
+            <blockquote class="dialog">
+                <svg height="30" viewBox="0 0 48 48" width="30" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#f1f2f2;}.cls-2{fill:#35dc86;}.cls-3{fill:none;stroke:#474c54;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g data-name="14-Android" id="_14-Android"><g data-name="&lt;Group&gt;" id="_Group_"><circle class="cls-1" cx="28" cy="9" r="2"/><circle class="cls-1" cx="20" cy="9" r="2"/><path class="cls-2" d="M38,34v3a2.006,2.006,0,0,1-2,2H33v6a2.006,2.006,0,0,1-2,2H29a2.006,2.006,0,0,1-2-2V39H21v6a2.006,2.006,0,0,1-2,2H17a2.006,2.006,0,0,1-2-2V39H12a2.006,2.006,0,0,1-2-2V34H7a.979.979,0,0,1-1-1V23a1.959,1.959,0,0,1,2-2H40a1.959,1.959,0,0,1,2,2V33a.979.979,0,0,1-1,1Z"/><path class="cls-2" d="M38,15v2H10V15a14,14,0,0,1,28,0ZM30,9a2,2,0,1,0-2,2A2.006,2.006,0,0,0,30,9ZM22,9a2,2,0,1,0-2,2A2.006,2.006,0,0,0,22,9Z"/><path class="cls-3" d="M38,15a14,14,0,0,0-28,0v2H38Z"/><line class="cls-3" x1="14" x2="10" y1="5" y2="1"/><line class="cls-3" x1="34" x2="38" y1="5" y2="1"/><path class="cls-3" d="M19,39h8v6a2.006,2.006,0,0,0,2,2h2a2.006,2.006,0,0,0,2-2V39h3a2.006,2.006,0,0,0,2-2V28"/><path class="cls-3" d="M10,28v9a2.006,2.006,0,0,0,2,2h3v6a2.006,2.006,0,0,0,2,2h2a2.006,2.006,0,0,0,2-2V43"/><path class="cls-3" d="M10,34H7a.979.979,0,0,1-1-1V23a1.959,1.959,0,0,1,2-2H40a1.959,1.959,0,0,1,2,2V33a.979.979,0,0,1-1,1H38"/><circle class="cls-3" cx="20" cy="9" r="2"/><circle class="cls-3" cx="28" cy="9" r="2"/></g></g></svg>
+                <pre style="white-space: pre-wrap; word-wrap: break-word;">欢迎来到GREAT LLM平台！</pre>
+            </blockquote>
+    </div>
+    <div style="width: 90%;margin-left: 5%;">
+        <div style="width: 100%;float: left;">
+            <div class="custom-file" style="width: 40%; float: left; margin-bottom: 10px;">
+                <input type="file" class="custom-file-input" id="imagefile" onchange="handleimage();">
+                <label class="custom-file-label" for="imagefile" id="imagelabel">选择本地图片……</label>
+            </div>
+            <input type="button" class="btn btn-outline-warning" value="重置会话" onclick="confirm_reset(this)" style="float: right;"/>
+            <input type="button" class="btn btn-primary" value="发 送" onclick="send()" style="float: right;margin-right: 10px;"/>
+            <input type="button" class="btn btn-primary" value="清除图片" onclick="clearimage()" style="float: left;margin-left: 10px;"/>
+            <div class="form-group">
+                <!-- <label for="input_sentence">提问</label> -->
+                <textarea class="form-control" id="input_sentence" rows="3" placeholder="输入问题..."></textarea>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div style="margin-top: -5%;">
+        
+        
+    </div>
+    <script>
+        function confirm_reset(e){
+            Notiflix.Confirm.show(
+            'Notiflix Confirm',
+            '是否确认重置历史会话?',
+            '是',
+            '否',
+            () => {
+                this.reset();
+                var block = document.createElement("blockquote");
+                block.setAttribute('class','dialog');
+                block.setAttribute('onclick','NLU(this);');
+                block.innerHTML='<svg height="30" viewBox="0 0 48 48" width="30" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#f1f2f2;}.cls-2{fill:#35dc86;}.cls-3{fill:none;stroke:#474c54;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g data-name="14-Android" id="_14-Android"><g data-name="&lt;Group&gt;" id="_Group_"><circle class="cls-1" cx="28" cy="9" r="2"/><circle class="cls-1" cx="20" cy="9" r="2"/><path class="cls-2" d="M38,34v3a2.006,2.006,0,0,1-2,2H33v6a2.006,2.006,0,0,1-2,2H29a2.006,2.006,0,0,1-2-2V39H21v6a2.006,2.006,0,0,1-2,2H17a2.006,2.006,0,0,1-2-2V39H12a2.006,2.006,0,0,1-2-2V34H7a.979.979,0,0,1-1-1V23a1.959,1.959,0,0,1,2-2H40a1.959,1.959,0,0,1,2,2V33a.979.979,0,0,1-1,1Z"/><path class="cls-2" d="M38,15v2H10V15a14,14,0,0,1,28,0ZM30,9a2,2,0,1,0-2,2A2.006,2.006,0,0,0,30,9ZM22,9a2,2,0,1,0-2,2A2.006,2.006,0,0,0,22,9Z"/><path class="cls-3" d="M38,15a14,14,0,0,0-28,0v2H38Z"/><line class="cls-3" x1="14" x2="10" y1="5" y2="1"/><line class="cls-3" x1="34" x2="38" y1="5" y2="1"/><path class="cls-3" d="M19,39h8v6a2.006,2.006,0,0,0,2,2h2a2.006,2.006,0,0,0,2-2V39h3a2.006,2.006,0,0,0,2-2V28"/><path class="cls-3" d="M10,28v9a2.006,2.006,0,0,0,2,2h3v6a2.006,2.006,0,0,0,2,2h2a2.006,2.006,0,0,0,2-2V43"/><path class="cls-3" d="M10,34H7a.979.979,0,0,1-1-1V23a1.959,1.959,0,0,1,2-2H40a1.959,1.959,0,0,1,2,2V33a.979.979,0,0,1-1,1H38"/><circle class="cls-3" cx="20" cy="9" r="2"/><circle class="cls-3" cx="28" cy="9" r="2"/></g></g></svg><pre style="white-space: pre-wrap; word-wrap: break-word;">系统提示：已重置会话。</pre>';
+                var div = document.getElementById('context');
+                div.appendChild(block);
+                Notiflix.Notify.success('已重置会话');
+            },
+            );
+        }
+        function reset(){
+            conv_history=JSON.stringify([]);
+            var div = document.getElementById('context');
+
+            for (var i=div.childNodes.length-1;i>=0;i--){
+                document.getElementById('context').removeChild(div.childNodes[i]);
+            }
+                
+        }
+        function send(){
+            var div = document.getElementById('model_name');
+            var modelname = div.innerHTML;
+            this.all_send(modelname);
+        }
+        
+        function all_send(modelname){
+            var input = document.getElementById('input_sentence').value;
+            var image = document.getElementById('imagefile').files[0];
+            if (image){
+                var reader = new FileReader();
+                    reader.onload = function(){
+                        let _img = new Image();
+                        _img.src = this.result;
+                        let ratio = _img.height/_img.width;
+                        var block = document.createElement("blockquote");
+                        // block.setAttribute('class','image');
+                        // block.setAttribute('onclick','NLU(this);');
+                        console.log(ratio);
+                        block.innerHTML='<img src="'+this.result+'" style="width:500px;height:'+500*ratio+'px;" class="figure-img"/>';
+                        div.appendChild(block);
+                };
+                reader.readAsDataURL(image);
+            }
+            console.log(image)
+            if (input=="" && image==undefined){
+                Notiflix.Notify.warning('输入内容为空');
+            }
+            else{
+                Notiflix.Loading.dots('Loading...',{
+                    clickToClose: true,
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                });
+                var div = document.getElementById('context');
+                var block = document.createElement("blockquote");
+                block.setAttribute('class','dialog');
+                block.setAttribute('onclick','NLU(this);');
+                block.innerHTML='<svg height="30" viewBox="0 0 48 48" width="30" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#49aaee;}.cls-2{fill:none;stroke:#474c54;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g data-name="9-Messager" id="_9-Messager"><g data-name="&lt;Group&gt;" id="_Group_"><path class="cls-1" d="M24,4c12.7,0,23,8.95,23,20S36.7,44,24,44a25.538,25.538,0,0,1-11.29-2.58L6,44l1.16-6.38A18.615,18.615,0,0,1,1,24C1,12.95,11.3,4,24,4Z"/><path class="cls-2" d="M24,4C11.3,4,1,12.95,1,24A18.615,18.615,0,0,0,7.16,37.62L6,44l6.71-2.58A25.538,25.538,0,0,0,24,44c12.7,0,23-8.95,23-20S36.7,4,24,4Z"/></g><polyline class="cls-2" points="14 29 22 21 27 26 35 18"/></g></svg><pre style="white-space: pre-wrap; word-wrap: break-word;">'+input+'</pre>';
+                div.appendChild(block);
+                document.getElementById('input_sentence').value='';
+
+                var form_data = new FormData();
+                form_data.append('text',input);
+                form_data.append('image',image);
+                
+
+                $.ajax({
+                    url:'http://58.199.160.234:34510/QA/'+course_list[modelname],
+                    type:'POST',
+                    contentType:false,
+                    dataType : "json",
+                    processData: false, 
+                    data:form_data,
+                    success:function(res){
+                        clearimage();
+                        var div = document.getElementById('context');
+                        var block = document.createElement("blockquote");
+                        block.setAttribute('class','dialog');
+                        block.setAttribute('onclick','NLU(this);');
+                        block.innerHTML='<svg height="30" viewBox="0 0 48 48" width="30" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#f1f2f2;}.cls-2{fill:#35dc86;}.cls-3{fill:none;stroke:#474c54;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g data-name="14-Android" id="_14-Android"><g data-name="&lt;Group&gt;" id="_Group_"><circle class="cls-1" cx="28" cy="9" r="2"/><circle class="cls-1" cx="20" cy="9" r="2"/><path class="cls-2" d="M38,34v3a2.006,2.006,0,0,1-2,2H33v6a2.006,2.006,0,0,1-2,2H29a2.006,2.006,0,0,1-2-2V39H21v6a2.006,2.006,0,0,1-2,2H17a2.006,2.006,0,0,1-2-2V39H12a2.006,2.006,0,0,1-2-2V34H7a.979.979,0,0,1-1-1V23a1.959,1.959,0,0,1,2-2H40a1.959,1.959,0,0,1,2,2V33a.979.979,0,0,1-1,1Z"/><path class="cls-2" d="M38,15v2H10V15a14,14,0,0,1,28,0ZM30,9a2,2,0,1,0-2,2A2.006,2.006,0,0,0,30,9ZM22,9a2,2,0,1,0-2,2A2.006,2.006,0,0,0,22,9Z"/><path class="cls-3" d="M38,15a14,14,0,0,0-28,0v2H38Z"/><line class="cls-3" x1="14" x2="10" y1="5" y2="1"/><line class="cls-3" x1="34" x2="38" y1="5" y2="1"/><path class="cls-3" d="M19,39h8v6a2.006,2.006,0,0,0,2,2h2a2.006,2.006,0,0,0,2-2V39h3a2.006,2.006,0,0,0,2-2V28"/><path class="cls-3" d="M10,28v9a2.006,2.006,0,0,0,2,2h3v6a2.006,2.006,0,0,0,2,2h2a2.006,2.006,0,0,0,2-2V43"/><path class="cls-3" d="M10,34H7a.979.979,0,0,1-1-1V23a1.959,1.959,0,0,1,2-2H40a1.959,1.959,0,0,1,2,2V33a.979.979,0,0,1-1,1H38"/><circle class="cls-3" cx="20" cy="9" r="2"/><circle class="cls-3" cx="28" cy="9" r="2"/></g></g></svg><pre style="white-space: pre-wrap; word-wrap: break-word;">'+res.output+'</pre>';
+                        div.appendChild(block);
+                        Notiflix.Loading.remove();
+                        console.log(res.output)
+                        // conv_history=JSON.stringify(res.history).slice(1,-1);
+                        document.getElementById('context').scrollTop=document.getElementById('context').scrollHeight;
+                    },
+                    error:function(res){
+                        Notiflix.Loading.remove();
+                    }
+                })
+            }
+        }
+        function clearimage(){
+            document.getElementById('imagefile').value="";
+            document.getElementById('imagelabel').innerHTML="选择本地图片……";
+        }
+        function handleimage(){
+            document.getElementById('imagelabel').innerHTML = document.getElementById('imagefile').files[0].name;
+        }
+    </script>
+    
+</body>
