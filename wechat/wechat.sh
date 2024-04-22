@@ -1,0 +1,2 @@
+# WECHATY_PUPPET_PADLOCAL_TOKEN 改为自己的
+docker run -it -d --name wechat -e WECHATY_LOG="verbose" -e WECHATY_PUPPET="wechaty-puppet-padlocal" -e WECHATY_PUPPET_PADLOCAL_TOKEN="puppet_padlocal_32f5a1fd70f2499f9fe1bd669fc69753" -e WECHATY_PUPPET_SERVER_PORT="19541" -e WECHATY_TOKEN="1fe5f846-3cfb-401d-b20c-sailor==" -p "19541:19541" wechaty/wechaty:0.65
